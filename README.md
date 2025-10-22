@@ -88,11 +88,13 @@ rate(docker_container_network_transmit_bytes_total[1m])
 
 Where to put the dashboard screenshot
 
-- If you'd like the README to display the live dashboard screenshot, add your screenshot as `monitoring/grafana/provisioning/dashboards/dashboard.png` and this README will reference it. The repo doesn't include large binary assets by default, so you can place your preferred screenshot there.
+- This repository currently includes a screenshot at the repo root named `dashboard.png`. The README image below references that file directly so it will render on GitHub.
 
-Example (once you add the file):
+- If you prefer to keep screenshots with Grafana provisioning files, move the image to `monitoring/grafana/provisioning/dashboards/dashboard.png` and update the reference accordingly.
 
-![Dashboard](monitoring/grafana/provisioning/dashboards/dashboard.png)
+Example (current):
+
+![Dashboard](dashboard.png)
 
 Troubleshooting
 
